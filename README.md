@@ -1,3 +1,4 @@
+
 ## usersテーブル
 
 |Column|Type|Options|
@@ -45,3 +46,5 @@
 ### Association
 - belongs_to :user
 - belongs_to :group
+
+
