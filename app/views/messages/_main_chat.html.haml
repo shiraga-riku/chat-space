@@ -1,0 +1,29 @@
+.main-chat
+  .main-header
+    .main-header__left-box
+      %p.main-header__left-box__current-group
+        name
+      %p.main-header__left-box__member-list
+        Member :
+    .main-header__btn
+      = link_to "#",class: "main-header__btn__edit" do
+        Edit
+
+  .messages
+    .messages__message
+      .messages__message__info
+        %p.messages__message__info__talker
+          name
+        %p.messages__message__info__date
+          2019/11/24
+      %p.messages__message__text
+        こんにちは
+
+  .form
+    %form.new-message
+      .input-box
+        %input.input-box__form-text{type:"text",placeholder:"type a message"}
+        %label{class: "input-box__image"}
+          = icon('fas', 'image')
+          %input{type: "file",class: "input-box__image--file"}
+      %input.submit-btn{type:"submit",value:"Send"}
