@@ -10,14 +10,7 @@
         Edit
 
   .messages
-    .messages__message
-      .messages__message__info
-        %p.messages__message__info__talker
-          name
-        %p.messages__message__info__date
-          2019/11/24
-      %p.messages__message__text
-        こんにちは
+    = render @messages
 
   .form
     = form_for [@group, @message] do |f|
