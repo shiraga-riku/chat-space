@@ -82,6 +82,7 @@
     .messages{
       background-color: #fafafa;
       height:599px;
+      overflow:scroll;
       &__message{
         padding:46px 40px;
         &__info{
