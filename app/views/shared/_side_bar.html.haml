@@ -11,15 +11,13 @@
           = icon('fas', 'cog', class: "header__box__menu__btn--icon")
 
   .groups
-    .groups__group
-      .groups__group__group-name
-        groupname
-      .groups__group__group-message
-        こんにちは
+    - current_user.groups.each do |group|
+      .groups__group
+        = link_to '#' do
+          .groups__group__group-name
+            =group.name
+          .groups__group__group-message
+            メッセージはまだありません。
 
-    .groups__group
-      .groups__group__group-name
-        groupname
-      .groups__group__group-message
-        こんにちは
+        
   
