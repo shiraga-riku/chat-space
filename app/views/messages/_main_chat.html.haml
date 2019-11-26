@@ -20,10 +20,10 @@
         こんにちは
 
   .form
-    %form.new-message
-      .input-box
-        %input.input-box__form-text{type:"text",placeholder:"type a message"}
-        %label{class: "input-box__image"}
-          = icon('fas', 'image')
-          %input{type: "file",class: "input-box__image--file"}
-      %input.submit-btn{type:"submit",value:"Send"}
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      .form__mask
+        = f.label :image, class: 'form__mask__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'
