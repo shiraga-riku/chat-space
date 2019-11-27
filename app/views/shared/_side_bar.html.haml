@@ -3,7 +3,6 @@
     .header__box
       .header__box__name
         = current_user.name
-        name
       .header__box__menu
         = link_to new_group_path,class: "header__box__menu__btn" do
           = icon('fas', 'edit', class: "header__box__menu__btn--icon")
@@ -17,7 +16,7 @@
           .groups__group__group-name
             =group.name
           .groups__group__group-message
-            メッセージはまだありません。
+            = group.show_last_message
 
         
   
