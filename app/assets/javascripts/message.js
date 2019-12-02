@@ -1,45 +1,28 @@
 $(function(){
   function buildHTML(message){
+    
+    var image_html ="";
     if (message.image){
-      var html =
-        `
-          <div class="messages__message">
-            <div class="messages__message__info">
-              <div class="messages__message__info__talker">
-                ${message.user_name}
-              </div>
-              <div class="messages__message__info__date">
-                ${message.date}
-              </div>
+      image_html=`<img src=${message.image}></img>`
+    }
+    var html =
+        `<div class="messages__message">
+          <div class="messages__message__info">
+            <div class="messages__message__info__talker">
+              ${message.user_name}
             </div>
-            <div class="messages__message__text">
-              <p class="messages__message__text__content">
-                ${message.content}
-              </p>
-              <img class="messages__message__text__image" src=${message.image}>
+            <div class="messages__message__info__date">
+              ${message.date}
             </div>
-          </div>`
-      return html;
-    } else {
-      var html=
-        `
-          <div class="messages__message">
-            <div class="messages__message__info">
-              <div class="messages__message__info__talker">
-                ${message.user_name}
-              </div>
-              <div class="messages__message__info__date">
-                ${message.date}
-              </div>
-            </div>
-            <div class="messages__message__text">
-              <p class="messages__message__text__content">
-                ${message.content}
-              </p>
-            </div>
-          </div>`
-      return html;
-    };
+          </div>
+          <div class="messages__message__text">
+            <p class="messages__message__text__content">
+              ${message.content}
+            </p>
+              ${image_html}
+          </div>
+        </div>`
+    return html;
   }
   $('#new_message').on('submit', function(e){
     e.preventDefault();
@@ -56,7 +39,7 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
-      $('.form__message').val('');
+      $('form')[0].reset();
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
       $('.form__submit').prop('disabled', false);
     })
