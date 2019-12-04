@@ -1,12 +1,15 @@
 $(function(){
+  
+
+
+
   function buildHTML(message){
-    
     var image_html ="";
     if (message.image){
       image_html=`<img src=${message.image}></img>`
     }
     var html =
-        `<div class="messages__message">
+        `<div class="messages__message" data-message_id =  "${message.id}" >
           <div class="messages__message__info">
             <div class="messages__message__info__talker">
               ${message.user_name}
@@ -24,6 +27,8 @@ $(function(){
         </div>`
     return html;
   }
+
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -47,4 +52,32 @@ $(function(){
       alert("メッセージ送信に失敗しました");
     });
   });
+
+
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      last_message_id = $('.messages__message:last').data("message_id");
+      $.ajax({
+        url: "api/messages",
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        var insertHTML = '';
+        $.each(messages, function(i, message) {
+          insertHTML += buildHTML(message)
+        });
+        if (messages.length != 0){
+        $('.messages').append(insertHTML);
+        $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+        }
+      })
+      .fail(function() {
+        alert('error');
+      });
+    }
+  };
+
+  setInterval(reloadMessages, 7000);
 });
