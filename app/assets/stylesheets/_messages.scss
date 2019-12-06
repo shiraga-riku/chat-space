@@ -2,6 +2,8 @@
   display:flex;
   .side-ber{
     width:300px;
+    box-sizing: border-box;
+    overflow:scroll;
     .header{
       background-color:#253141;
       height:100px;
@@ -28,7 +30,7 @@
 
     .groups{
       background-color:#2f3e51;
-      height:689px;
+      height:calc(100vh - 100px);
       color:#FFFF;
       padding:0 20px ;
       &__group{
@@ -46,7 +48,7 @@
   }
 
   .main-chat{
-    width:100%;
+    width:calc(100% - 300px);
     .main-header{
       display: flex;
       justify-content: space-between;
@@ -81,7 +83,7 @@
 
     .messages{
       background-color: #fafafa;
-      height:599px;
+      height:calc(100vh - 100px - 90px);
       overflow:scroll;
       &__message{
         padding:46px 40px;
